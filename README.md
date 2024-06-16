@@ -23,7 +23,7 @@ Steps
 
 Clone the repository:
 
-git clone https://github.com/yourusername/neuromorphic-simulation.git
+git clone https: adress of this repo
 cd neuromorphic-simulation
 Install the required packages:
 
@@ -350,3 +350,20 @@ with Pool(processes=4) as pool:
 License
 
 This project is licensed under the GNU 3.0 License - see the LICENSE file for details.
+
+Publications that were mandatory for this project's research below:
+
+Uhlenbeck, G. E., & Ornstein, L. S. (1930). On the theory of the Brownian motion. Physical Review, 36(5), 823-841. Link
+
+Abbott, L. F., & Regehr, W. G. (2004). Synaptic computation. Nature, 431(7010), 796-803. Link
+
+Markram, H., Gerstner, W., & Sjöström, P. J. (2012). Spike-timing-dependent plasticity: A comprehensive overview. Frontiers in Synaptic Neuroscience, 4, 2. Link
+
+Song, S., Miller, K. D., & Abbott, L. F. (2000). Competitive Hebbian learning through spike-timing-dependent synaptic plasticity. Nature Neuroscience, 3(9), 919-926. Link
+
+Watts, D. J., & Strogatz, S. H. (1998). Collective dynamics of 'small-world' networks. Nature, 393(6684), 440-442. Link
+
+Special thanks to medical student A.Fogl
+
+
+
