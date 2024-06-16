@@ -79,9 +79,8 @@ Real-time visualization of neuron activities is provided using matplotlib.animat
 Performance Optimization
 The simulation uses cProfile for profiling and parallel processing for efficient synaptic weight updates.
 
-!Example Simulation Code
-
-####Here is the most recent simulation code:
+Example Simulation Code
+Here is the most recent simulation code:
 
 import numpy as np
 import matplotlib.pyplot as plt
