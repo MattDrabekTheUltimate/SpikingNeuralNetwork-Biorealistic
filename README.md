@@ -1,87 +1,109 @@
+```markdown
 # SpikingNeuralNetwork-Biorealistic
-This repository implements a spiking neural network (SNN) simulation using the Izhikevich neuron model. It incorporates biorealistic features to explore learning and information processing in neural networks
 
-Neuromorphic Simulation
+This repository implements a spiking neural network (SNN) simulation using the Izhikevich neuron model. It incorporates biorealistic features to explore learning and information processing in neural networks.
+
+## Neuromorphic Simulation
 
 This project simulates a neuromorphic network using the Lava framework. The simulation includes dynamic baseline adjustments, neuromodulation, synaptic plasticity, and real-time visualization.
 
-Features
+## Features
 
-Dynamic Baseline Adjustments: Utilizes an Ornstein-Uhlenbeck process to generate time-varying baselines.
-Neuromodulation: Incorporates dopamine, serotonin, and norepinephrine effects on neuron excitability.
-Synaptic Plasticity: Implements spike-timing-dependent plasticity (STDP) for synaptic weight updates.
-Real-Time Visualization: Provides real-time plotting of neuron activities.
-Parallel Processing: Uses parallel processing for efficient synaptic weight updates.
-Installation
+- **Dynamic Baseline Adjustments:** Utilizes an Ornstein-Uhlenbeck process to generate time-varying baselines.
+- **Neuromodulation:** Incorporates dopamine, serotonin, and norepinephrine effects on neuron excitability.
+- **Synaptic Plasticity:** Implements spike-timing-dependent plasticity (STDP) for synaptic weight updates.
+- **Real-Time Visualization:** Provides real-time plotting of neuron activities.
+- **Parallel Processing:** Uses parallel processing for efficient synaptic weight updates.
 
-Prerequisites
-Python 3.8 or higher
-pip (Python package installer)
+## Installation
 
+### Prerequisites
 
-Steps
+- Python 3.8 or higher
+- pip (Python package installer)
 
-Clone the repository:
+### Steps
 
-git clone https: adress of this repo
-cd neuromorphic-simulation
-Install the required packages:
+1. Clone the repository:
 
+    ```bash
+    git clone https://address_of_this_repo
+    cd neuromorphic-simulation
+    ```
 
-pip install -r requirements.txt
-Usage
+2. Install the required packages:
 
-Running the Simulation
-To run the simulation, execute the simulation.py script:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
+## Usage
 
+### Running the Simulation
 
+To run the simulation, execute the `simulation.py` script:
+
+```bash
 python simulation.py
-Simulation Parameters
-You can adjust the simulation parameters directly in the simulation.py file. Key parameters include:
+```
 
-num_neurons: Number of neurons in the network.
-tau_excitability: Time constant for neuron excitability.
-tau_synaptic: Time constant for synaptic plasticity.
-dopamine_effect, serotonin_effect, norepinephrine_effect: Effects of neuromodulators.
-learning_rate: Learning rate for synaptic weight updates.
-time_steps: Number of simulation time steps.
-dt: Simulation time step duration.
-Code Overview
+### Simulation Parameters
 
-Simulation Parameters and Initial Conditions
+You can adjust the simulation parameters directly in the `simulation.py` file. Key parameters include:
+
+- `num_neurons`: Number of neurons in the network.
+- `tau_excitability`: Time constant for neuron excitability.
+- `tau_synaptic`: Time constant for synaptic plasticity.
+- `dopamine_effect`, `serotonin_effect`, `norepinephrine_effect`: Effects of neuromodulators.
+- `learning_rate`: Learning rate for synaptic weight updates.
+- `time_steps`: Number of simulation time steps.
+- `dt`: Simulation time step duration.
+
+## Code Overview
+
+### Simulation Parameters and Initial Conditions
+
 Initial conditions for the neurons, synaptic weights, and neuromodulator levels are set up using biologically plausible values.
 
-Dynamic Baseline Adjustments
-The dynamic_baseline function generates a time-varying baseline with controlled fluctuations using an Ornstein-Uhlenbeck process.
+### Dynamic Baseline Adjustments
 
-Izhikevich Model
-The izhikevich_update function updates membrane potentials and recovery variables based on the Izhikevich model.
+The `dynamic_baseline` function generates a time-varying baseline with controlled fluctuations using an Ornstein-Uhlenbeck process.
 
-Neuromodulation
-The neuromodulation function calculates the modulation factor based on dopamine, serotonin, and norepinephrine levels.
+### Izhikevich Model
 
-Synaptic Plasticity
-The update_synaptic_weights function implements an enhanced STDP rule with precise spike timing updates.
+The `izhikevich_update` function updates membrane potentials and recovery variables based on the Izhikevich model.
 
-Network Topology
-The create_network_topology function generates a network topology using different models such as small-world, scale-free, or random.
+### Neuromodulation
 
-Gradual Update of Initial Conditions
-The gradual_update_initial_conditions function smooths adjustments to initial conditions during the simulation.
+The `neuromodulation` function calculates the modulation factor based on dopamine, serotonin, and norepinephrine levels.
 
-Error Handling
+### Synaptic Plasticity
+
+The `update_synaptic_weights` function implements an enhanced STDP rule with precise spike timing updates.
+
+### Network Topology
+
+The `create_network_topology` function generates a network topology using different models such as small-world, scale-free, or random.
+
+### Gradual Update of Initial Conditions
+
+The `gradual_update_initial_conditions` function smooths adjustments to initial conditions during the simulation.
+
+### Error Handling
+
 Comprehensive logging is implemented to capture detailed error information and network state snapshots for effective debugging.
 
-Real-Time Visualization
-Real-time visualization of neuron activities is provided using matplotlib.animation.
+### Real-Time Visualization
 
-Performance Optimization
-The simulation uses cProfile for profiling and parallel processing for efficient synaptic weight updates.
+Real-time visualization of neuron activities is provided using `matplotlib.animation`.
 
-Example Simulation Code
-Here is the most recent simulation code:
+### Performance Optimization
 
+The simulation uses `cProfile` for profiling and parallel processing for efficient synaptic weight updates.
+
+## Example Simulation Code
+
+```python
 import numpy as np
 import matplotlib.pyplot as plt
 from lava.magma.core.model.py.model import PyLoihiProcessModel
@@ -191,7 +213,9 @@ def update_neuron_excitability(excitability, modulation_factor, dt, tau_excitabi
     return excitability + dt * (-excitability + modulation_factor) / tau_excitability
 
 def create_network_topology(num_neurons, topology_type="small_world"):
-    """Generate a network topology."""
+    """Generate a
+
+ network topology."""
     if topology_type == "small_world":
         G = nx.watts_strogatz_graph(num_neurons, k=4, p=0.1)
     elif topology_type == "scale_free":
@@ -209,12 +233,12 @@ def periodic_network_adjustment(synaptic_weights, target_degree=4, adjustment_ra
     for i in range(len(current_degrees)):
         if current_degrees[i] < target_degree:
             candidates = np.where(synaptic_weights[i] == 0)[0]
-            if candidates size > 0:
+            if candidates.size > 0:
                 j = np.random.choice(candidates)
                 synaptic_weights[i, j] = np.random.rand() * adjustment_rate
         elif current_degrees[i] > target_degree:
             connected = np.where(synaptic_weights[i] > 0)[0]
-            if connected size > 0:
+            if connected.size > 0:
                 j = np.random.choice(connected)
                 synaptic_weights[i, j] *= 1 - adjustment_rate
     return synaptic_weights
@@ -253,7 +277,7 @@ class NeuronModel(PyLoihiProcessModel):
         try:
             I = self.input.recv()
             modulation_factor = neuromodulation(
-                dopamine_levels, serotonin_levels, norepinephrine levels,
+                dopamine_levels, serotonin_levels, norepinephrine_levels,
                 baseline_dopamine, baseline_serotonin, baseline_norepinephrine,
                 dopamine_effect, serotonin_effect, norepinephrine_effect,
                 np.arange(len(self.voltage)), self.time_step
@@ -266,12 +290,12 @@ class NeuronModel(PyLoihiProcessModel):
         except Exception as e:
             logging.error(f"Error in neuron model: {str(e)}")
             logging.error(f"Neuron Potentials: {self.voltage.get()}")
-            logging.error(f"Recovery Variables: {self.recovery get()}")
-            logging.error(f"Synaptic Weights: {synaptic weights}")
-            logging.error(f"Dopamine Levels: {dopamine levels}")
-            logging.error(f"Serotonin Levels: {serotonin levels}")
-            logging.error(f"Norepinephrine Levels: {norepinephrine levels}")
-            logging.error(f"Eligibility Traces: {eligibility traces}")
+            logging.error(f"Recovery Variables: {self.recovery.get()}")
+            logging.error(f"Synaptic Weights: {synaptic_weights}")
+            logging.error(f"Dopamine Levels: {dopamine_levels}")
+            logging.error(f"Serotonin Levels: {serotonin_levels}")
+            logging.error(f"Norepinephrine Levels: {norepinephrine_levels}")
+            logging.error(f"Eligibility Traces: {eligibility_traces}")
             traceback.print_exc()
 
 # Instantiate and configure neurons
@@ -347,23 +371,28 @@ with Pool(processes=4) as pool:
         (synaptic_weights, output_sink.data[:, t], output_sink.data[:, t+1], eligibility_traces, learning_rate, tau_eligibility)
         for t in range(time_steps - 1)
     ])
-License
+```
+
+## License
 
 This project is licensed under the GNU 3.0 License - see the LICENSE file for details.
 
-Publications that were mandatory for this project's research below:
+## Publications
 
-Uhlenbeck, G. E., & Ornstein, L. S. (1930). On the theory of the Brownian motion. Physical Review, 36(5), 823-841. Link
+Uhlenbeck, G. E., & Ornstein, L. S. (1930). On the theory of the Brownian motion. Physical Review, 36(5), 823-841. [Link](https://link_to_publication)
 
-Abbott, L. F., & Regehr, W. G. (2004). Synaptic computation. Nature, 431(7010), 796-803. Link
+Abbott, L. F., & Regehr, W. G. (2004). Synaptic computation. Nature, 431(7010), 796-803. [Link](https://link_to_publication)
 
-Markram, H., Gerstner, W., & Sjöström, P. J. (2012). Spike-timing-dependent plasticity: A comprehensive overview. Frontiers in Synaptic Neuroscience, 4, 2. Link
+Markram, H., Gerstner, W., & Sjöström, P. J. (2012). Spike-timing-dependent plasticity: A comprehensive overview. Frontiers in Synaptic Neuroscience, 4, 2. [Link](https://link_to_publication)
 
-Song, S., Miller, K. D., & Abbott, L. F. (2000). Competitive Hebbian learning through spike-timing-dependent synaptic plasticity. Nature Neuroscience, 3(9), 919-926. Link
+Song, S., Miller, K. D., & Abbott, L. F. (2000). Competitive Hebbian learning through spike-timing-dependent synaptic plasticity. Nature Neuroscience, 3(9), 919-926. [Link](https://link_to_publication)
 
-Watts, D. J., & Strogatz, S. H. (1998). Collective dynamics of 'small-world' networks. Nature, 393(6684), 440-442. Link
+Watts, D. J., & Strogatz, S. H. (1998). Collective dynamics of 'small-world' networks. Nature, 393(6684), 440-442. [Link](https://link_to_publication)
 
-Special thanks to medical student A.Fogl
+Special thanks to medical student A. Fogl
+```
+
+This revised README has better organization, consistent formatting, and properly highlighted code blocks.
 
 
 
