@@ -210,12 +210,12 @@ def update_synaptic_weights(weights, spikes_pre, spikes_post, eligibility_traces
 
 def update_neuron_excitability(excitability, modulation_factor, dt, tau_excitability):
     """Update the excitability of neurons."""
-    return excitability + dt * (-excitability + modulation_factor) / tau_excitability
+    return excitability + dt * (-excitability + modulation_factor) /
+
+ tau_excitability
 
 def create_network_topology(num_neurons, topology_type="small_world"):
-    """Generate a
-
- network topology."""
+    """Generate a network topology."""
     if topology_type == "small_world":
         G = nx.watts_strogatz_graph(num_neurons, k=4, p=0.1)
     elif topology_type == "scale_free":
@@ -379,20 +379,11 @@ This project is licensed under the GNU 3.0 License - see the LICENSE file for de
 
 ## Publications
 
-Uhlenbeck, G. E., & Ornstein, L. S. (1930). On the theory of the Brownian motion. Physical Review, 36(5), 823-841. [Link](https://link_to_publication)
-
-Abbott, L. F., & Regehr, W. G. (2004). Synaptic computation. Nature, 431(7010), 796-803. [Link](https://link_to_publication)
-
-Markram, H., Gerstner, W., & Sjöström, P. J. (2012). Spike-timing-dependent plasticity: A comprehensive overview. Frontiers in Synaptic Neuroscience, 4, 2. [Link](https://link_to_publication)
-
-Song, S., Miller, K. D., & Abbott, L. F. (2000). Competitive Hebbian learning through spike-timing-dependent synaptic plasticity. Nature Neuroscience, 3(9), 919-926. [Link](https://link_to_publication)
-
-Watts, D. J., & Strogatz, S. H. (1998). Collective dynamics of 'small-world' networks. Nature, 393(6684), 440-442. [Link](https://link_to_publication)
+- Uhlenbeck, G. E., & Ornstein, L. S. (1930). On the theory of the Brownian motion. Physical Review, 36(5), 823-841. [Link](https://link_to_publication)
+- Abbott, L. F., & Regehr, W. G. (2004). Synaptic computation. Nature, 431(7010), 796-803. [Link](https://link_to_publication)
+- Markram, H., Gerstner, W., & Sjöström, P. J. (2012). Spike-timing-dependent plasticity: A comprehensive overview. Frontiers in Synaptic Neuroscience, 4, 2. [Link](https://link_to_publication)
+- Song, S., Miller, K. D., & Abbott, L. F. (2000). Competitive Hebbian learning through spike-timing-dependent synaptic plasticity. Nature Neuroscience, 3(9), 919-926. [Link](https://link_to_publication)
+- Watts, D. J., & Strogatz, S. H. (1998). Collective dynamics of 'small-world' networks. Nature, 393(6684), 440-442. [Link](https://link_to_publication)
 
 Special thanks to medical student A. Fogl
 ```
-
-This revised README has better organization, consistent formatting, and properly highlighted code blocks.
-
-
-
