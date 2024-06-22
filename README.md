@@ -3,15 +3,14 @@
 This project simulates a neuromorphic system with dynamic baseline, neuromodulation, plasticity, and network topology.
 
 ## Directory Structure
+
 project_root/
 ├── config/
 │   ├── simulation_config.json
 │   └── logging_config.json
 ├── data/
 │   ├── neuron_sensitivity.npy
-│   └── initial_conditions.npy
-├── docs/
-│   └── README.md
+│   └── initial_conditions.np
 ├── logs/
 │   └── simulation.log
 ├── modules/
@@ -25,6 +24,7 @@ project_root/
 │   └── visualization.py
 └── tests/
     └── test_simulation.py
+
 
 
 
