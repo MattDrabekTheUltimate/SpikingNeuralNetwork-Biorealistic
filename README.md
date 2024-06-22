@@ -4,7 +4,7 @@ This project simulates a neuromorphic system with dynamic baseline, neuromodulat
 
 ## Directory Structure
 
-project_root/
+```project_root/
 ├── config/
 │   ├── simulation_config.json
 │   └── logging_config.json
@@ -24,7 +24,7 @@ project_root/
 │   └── visualization.py
 └── tests/
     └── test_simulation.py
-
+```
 
 
 
