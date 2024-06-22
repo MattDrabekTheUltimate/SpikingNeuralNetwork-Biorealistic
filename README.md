@@ -10,7 +10,7 @@ project_root/
 │   └── logging_config.json
 ├── data/
 │   ├── neuron_sensitivity.npy
-│   └── initial_conditions.np
+│   └── initial_conditions.npy
 ├── logs/
 │   └── simulation.log
 ├── modules/
