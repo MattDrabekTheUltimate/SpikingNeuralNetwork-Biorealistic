@@ -47,3 +47,4 @@ timer = canvas.events.timer.connect(lambda event: update_vispy(event))
 timer.start(0.1)
 canvas.app.run()
 
+
