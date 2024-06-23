@@ -6,7 +6,6 @@ if not os.path.exists('data'):
     os.makedirs('data')
 
 # Generate neuron sensitivity data based on empirical ranges
-# Source: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4993510/
 neuron_sensitivity = np.random.uniform(0.8, 1.2, (100, 3))
 np.save('data/neuron_sensitivity.npy', neuron_sensitivity)
 
