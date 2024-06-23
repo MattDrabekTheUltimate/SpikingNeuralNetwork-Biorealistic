@@ -11,5 +11,12 @@
     "serotonin_effect": 0.1,
     "norepinephrine_effect": 0.1,
     "learning_rate": 0.01,
-    "tau_eligibility": 20.0
+    "tau_eligibility": 20.0,
+    "topology_type": "small_world",
+    "p_rewire": 0.1,
+    "k": 4,
+    "cognitive_model_params": {
+        "integration_levels": 1.0,
+        "attention_signals": 1.0
+    }
 }
