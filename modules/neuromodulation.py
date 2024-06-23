@@ -1,6 +1,5 @@
 import numpy as np
 
-# Empirical data reference: "Neurotransmitter Modulation of Neuronal Activity" - Neuropharmacology (2015)
 def neuromodulation(dopamine_levels, serotonin_levels, norepinephrine_levels, baseline_dopamine, baseline_serotonin, baseline_norepinephrine, dopamine_effect, serotonin_effect, norepinephrine_effect, t, num_neurons, neuron_sensitivity):
     modulation_factors = np.ones(num_neurons)
     for i in range(num_neurons):
