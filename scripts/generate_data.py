@@ -18,7 +18,7 @@ initial_conditions = {
 }
 np.save('data/initial_conditions.npy', initial_conditions)
 
-# Generate cognitive model weights (example)
+# Generate cognitive model weights (example, replace with actual empirical data if available)
 cognitive_model_weights = np.random.rand(100, 100)
 np.save('data/cognitive_model_weights.npy', cognitive_model_weights)
 
