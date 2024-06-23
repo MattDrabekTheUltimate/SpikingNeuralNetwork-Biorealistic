@@ -1,9 +1,7 @@
 import numpy as np
 
-def create_network_topology(num_neurons, topology_type="small_world"):
-    if (topology_type == "small_world"):
-        p_rewire = 0.1
-        k = 4
+def create_network_topology(num_neurons, topology_type="small_world", p_rewire=0.1, k=4):
+    if topology_type == "small_world":
         synaptic_weights = np.zeros((num_neurons, num_neurons))
         for i in range(num_neurons):
             for j in range(1, k // 2 + 1):
