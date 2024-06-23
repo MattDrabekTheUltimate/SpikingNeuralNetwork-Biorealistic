@@ -10,14 +10,18 @@ This project simulates a neuromorphic system with dynamic baseline, neuromodulat
 │   └── logging_config.json
 ├── data/
 │   ├── neuron_sensitivity.npy
-│   └── initial_conditions.npy
+│   ├── initial_conditions.npy
+│   └── cognitive_model_weights.npy
+├── docs/
+│   └── README.md
 ├── logs/
 │   └── simulation.log
 ├── modules/
 │   ├── baseline.py
 │   ├── neuromodulation.py
 │   ├── plasticity.py
-│   └── topology.py
+│   ├── topology.py
+│   └── cognitive_integration.py
 ├── scripts/
 │   ├── generate_data.py
 │   ├── run_simulation.py
