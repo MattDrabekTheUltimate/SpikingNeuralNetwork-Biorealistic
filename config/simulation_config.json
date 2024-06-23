@@ -17,6 +17,8 @@
     "k": 4,
     "cognitive_model_params": {
         "integration_levels": 1.0,
-        "attention_signals": 1.0
+        "attention_signals": 1.0,
+        "feedback_strength_base": 0.1,
+        "noise_level": 0.05
     }
 }
