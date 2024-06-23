@@ -12,10 +12,13 @@ from lava.magma.core.run_configs import Loihi1SimCfg
 from lava.proc.dense.process import Dense
 from lava.proc.io.source import RingBuffer
 from lava.proc.io.sink import RingBufferSink
+from dask import delayed, compute
+from dask.distributed import Client
 from modules.baseline import dynamic_baseline
 from modules.neuromodulation import neuromodulation
 from modules.plasticity import update_synaptic_weights
 from modules.topology import create_network_topology, dynamic_topology_switching
+from modules.cognitive_integration import dehaene_changeux_modulation
 
 # Setup logging
 logging.config.fileConfig('config/logging_config.json')
@@ -30,6 +33,11 @@ neuron_sensitivity = np.load('data/neuron_sensitivity.npy')
 
 # Load initial conditions
 initial_conditions = np.load('data/initial_conditions.npy', allow_pickle=True).item()
+
+# Load cognitive model weights
+cognitive_model_weights = np.load('data/cognitive_model_weights.npy')
+
+client = Client()
 
 def initialize_simulation():
     try:
@@ -50,12 +58,18 @@ def initialize_simulation():
         neurons.out_ports.output.connect(output_sink.in_ports.input)
 
         # Create a realistic network topology
-        synaptic_weights = create_network_topology(config["num_neurons"], topology_type="small_world")
+        synaptic_weights = create_network_topology(config["num_neurons"], topology_type=config["topology_type"], p_rewire=config["p_rewire"], k=config["k"])
 
         return neurons, input_current, output_sink, synaptic_weights
     except Exception as e:
         logger.error(f"Initialization error: {str(e)}")
         raise
+
+@delayed
+def batch_update_synaptic_weights_dask(synaptic_weights, spikes_pre_batch, spikes_post_batch, eligibility_traces, learning_rate, tau_eligibility):
+    for t in range(spikes_pre_batch.shape[1]):
+        synaptic_weights, eligibility_traces = update_synaptic_weights(synaptic_weights, spikes_pre_batch[:, t], spikes_post_batch[:, t], eligibility_traces, learning_rate, tau_eligibility)
+    return synaptic_weights, eligibility_traces
 
 def run_simulation(neurons, synaptic_weights, output_sink):
     run_config = Loihi1SimCfg(select_tag="floating_pt", select_sub_proc_model=True)
@@ -66,6 +80,16 @@ def run_simulation(neurons, synaptic_weights, output_sink):
             gradual_update_initial_conditions(t, alpha=0.1)
             synaptic_weights = dynamic_topology_switching(synaptic_weights, output_sink.data[:, t], target_degree=4, adjustment_rate=0.01)
             neurons.run(condition=run_condition, run_cfg=run_config)
+
+            neuron_activity = output_sink.data[:, t]
+            integrated_activity = dehaene_changeux_modulation(neuron_activity, config["cognitive_model_params"]["integration_levels"], config["cognitive_model_params"]["attention_signals"], cognitive_model_weights)
+            
+            spikes_pre = np.random.rand(config["num_neurons"], config["time_steps"]) > 0.9
+            spikes_post = np.random.rand(config["num_neurons"], config["time_steps"]) > 0.9
+            eligibility_traces = np.zeros(config["num_neurons"])
+            
+            synaptic_weights, eligibility_traces = compute(batch_update_synaptic_weights_dask(synaptic_weights, spikes_pre, spikes_post, eligibility_traces, config["learning_rate"], config["tau_eligibility"]))
+    
     except Exception as e:
         logger.error(f"Error during simulation: {str(e)}")
         logger.error(f"Neuron Model State: {neurons.__dict__}")
@@ -76,7 +100,7 @@ def run_simulation(neurons, synaptic_weights, output_sink):
         logger.error(f"Serotonin Levels: {dynamic_baseline(t)}")
         logger.error(f"Norepinephrine Levels: {dynamic_baseline(t)}")
         logger.error(f"Eligibility Traces: {np.zeros(config['num_neurons'])}")
-        logger.error(f"Network Topology: {create_network_topology(config['num_neurons'], topology_type='small_world')}")
+        logger.error(f"Network Topology: {create_network_topology(config['num_neurons'], topology_type=config['topology_type'])}")
         traceback.print_exc()
 
 # Profiling and optimization
@@ -90,15 +114,3 @@ run_simulation(neurons, synaptic_weights, output_sink)
 profiler.disable()
 stats = pstats.Stats(profiler).sort_stats('cumtime')
 stats.print_stats()
-
-# Use a more efficient parallel processing strategy
-def batch_update_synaptic_weights(args):
-    synaptic_weights, spikes_pre_batch, spikes_post_batch, eligibility_traces, learning_rate, tau_eligibility = args
-    for t in range(spikes_pre_batch.shape[1]):
-        synaptic_weights, eligibility_traces = update_synaptic_weights(synaptic_weights, spikes_pre_batch[:, t], spikes_post_batch[:, t], eligibility_traces, learning_rate, tau_eligibility)
-    return synaptic_weights, eligibility_traces
-
-batch_size = 100
-batched_data = [(synaptic_weights, output_sink.data[:, t:t+batch_size], output_sink.data[:, t+1:t+1+batch_size], np.zeros(config["num_neurons"]), config["learning_rate"], config["tau_eligibility"]) for t in range(0, config["time_steps"] - batch_size, batch_size)]
-with Pool(processes=4) as pool:
-    results = pool.map(batch_update_synaptic_weights, batched_data)
