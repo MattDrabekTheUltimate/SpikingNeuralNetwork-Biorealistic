@@ -18,7 +18,19 @@
     "cognitive_model_params": {
         "integration_levels": 1.0,
         "attention_signals": 1.0,
-        "feedback_strength_base": 0.1,
-        "noise_level": 0.05
+        "interregional_connectivity": 1.0
+    },
+    "adex_params": {
+        "C": 200,
+        "gL": 10,
+        "EL": -70,
+        "VT": -50,
+        "DeltaT": 2,
+        "a": 2,
+        "tau_w": 30,
+        "b": 0.5,
+        "Vr": -60,
+        "Vpeak": 35,
+        "dt": 0.1
     }
 }
