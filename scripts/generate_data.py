@@ -18,8 +18,21 @@ initial_conditions = {
 }
 np.save('data/initial_conditions.npy', initial_conditions)
 
-# Generate cognitive model weights (example, replace with actual empirical data if available)
+# Generate cognitive model weights (example)
 cognitive_model_weights = np.random.rand(100, 100)
 np.save('data/cognitive_model_weights.npy', cognitive_model_weights)
 
-print("Neuron sensitivity, initial conditions, and cognitive model weights generated and saved.")
+# Generate neuromodulator levels
+dopamine_levels = np.random.uniform(0.5, 1.5, 1000)
+serotonin_levels = np.random.uniform(0.5, 1.5, 1000)
+norepinephrine_levels = np.random.uniform(0.5, 1.5, 1000)
+integration_levels = np.random.uniform(0.5, 1.5, 1000)
+attention_signals = np.random.uniform(0.5, 1.5, 1000)
+
+np.save('data/dopamine_levels.npy', dopamine_levels)
+np.save('data/serotonin_levels.npy', serotonin_levels)
+np.save('data/norepinephrine_levels.npy', norepinephrine_levels)
+np.save('data/integration_levels.npy', integration_levels)
+np.save('data/attention_signals.npy', attention_signals)
+
+print("Data generated and saved.")
