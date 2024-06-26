@@ -1,6 +1,6 @@
 # Neuromorphic Simulation
 
-This project simulates a neuromorphic system with dynamic baseline, neuromodulation, plasticity, and network topology.
+This project simulates a neuromorphic system with higher level of consciousness
 
 ## Directory Structure
 
@@ -11,17 +11,28 @@ This project simulates a neuromorphic system with dynamic baseline, neuromodulat
 ├── data/
 │   ├── neuron_sensitivity.npy
 │   ├── initial_conditions.npy
-│   └── cognitive_model_weights.npy
+│   ├── cognitive_model_weights.npy
+│   ├── dopamine_levels.npy
+│   ├── serotonin_levels.npy
+│   ├── norepinephrine_levels.npy
+│   ├── integration_levels.npy
+│   ├── attention_signals.npy
 ├── docs/
 │   └── README.md
 ├── logs/
 │   └── simulation.log
 ├── modules/
 │   ├── baseline.py
-│   ├── neuromodulation.py
+│   ├── dehaene_changeux_modulation.py
+│   ├── continuous_learning.py
+│   ├── emotional_models.py
 │   ├── plasticity.py
 │   ├── topology.py
-│   └── cognitive_integration.py
+│   ├── behavior_monitoring.py
+│   ├── self_model.py
+│   ├── sensory_motor.py
+│   ├── adex_neuron.py
+│   ├── ionic_channels.py
 ├── scripts/
 │   ├── generate_data.py
 │   ├── run_simulation.py
