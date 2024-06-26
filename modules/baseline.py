@@ -4,10 +4,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 def dynamic_baseline(t, mu=1.0, sigma=0.005, tau=100.0, kp=0.1, ki=0.01, kd=0.01, network_state=None):
-    """
-    Implements the dynamic baseline adjustment mechanism for neurons.
-    Reference: Turrigiano GG, Leslie KR, Desai NS, Rutherford LC, Nelson SB. Activity-dependent scaling of quantal amplitude in neocortical neurons. Nature. 1998.
-    """
     try:
         if not (0 < sigma < 0.1):
             raise ValueError("Sigma value out of expected range.")
