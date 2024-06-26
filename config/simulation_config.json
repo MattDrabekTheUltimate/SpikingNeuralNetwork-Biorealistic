@@ -19,6 +19,5 @@
         "integration_levels": 1.0,
         "attention_signals": 1.0,
         "interregional_connectivity": 1.0
-    },
-    "dynamic_adjustments": true
+    }
 }
