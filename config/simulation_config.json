@@ -20,17 +20,5 @@
         "attention_signals": 1.0,
         "interregional_connectivity": 1.0
     },
-    "adex_params": {
-        "C": 200,
-        "gL": 10,
-        "EL": -70,
-        "VT": -50,
-        "DeltaT": 2,
-        "a": 2,
-        "tau_w": 30,
-        "b": 0.5,
-        "Vr": -60,
-        "Vpeak": 35,
-        "dt": 0.1
-    }
+    "dynamic_adjustments": true
 }
