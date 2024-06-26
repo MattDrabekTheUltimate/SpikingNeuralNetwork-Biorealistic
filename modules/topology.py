@@ -1,6 +1,10 @@
 import numpy as np
 
 def create_network_topology(num_neurons, topology_type="small_world", p_rewire=0.1, k=4):
+    """
+    Creates a neural network topology.
+    Reference: Sporns O, Chialvo DR, Kaiser M, Hilgetag CC. Organization, development and function of complex brain networks. Trends in Cognitive Sciences. 2004.
+    """
     if topology_type == "small_world":
         synaptic_weights = np.zeros((num_neurons, num_neurons))
         for i in range(num_neurons):
@@ -18,6 +22,10 @@ def create_network_topology(num_neurons, topology_type="small_world", p_rewire=0
     return synaptic_weights
 
 def dynamic_topology_switching(synaptic_weights, spikes, target_degree=4, adjustment_rate=0.01):
+    """
+    Implements dynamic network reconfiguration.
+    Reference: Sporns O, Chialvo DR, Kaiser M, Hilgetag CC. Organization, development and function of complex brain networks. Trends in Cognitive Sciences. 2004.
+    """
     current_degrees = np.sum(synaptic_weights > 0, axis=1)
     for i in range(len(current_degrees)):
         if current_degrees[i] < target_degree:
