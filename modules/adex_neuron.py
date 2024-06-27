@@ -18,8 +18,8 @@ class AdExNeuron:
         self.Vr = Vr
         self.Vpeak = Vpeak
         self.dt = dt
-        self.V = EL  # Membrane potential
-        self.w = 0  # Adaptation variable
+        self.V = EL
+        self.w = 0
 
     def validate_parameters(self):
         if not (50 <= self.C <= 500):
