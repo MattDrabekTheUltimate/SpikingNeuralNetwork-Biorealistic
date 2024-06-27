@@ -7,17 +7,15 @@
     "kp": 0.1,
     "ki": 0.01,
     "kd": 0.01,
-    "dopamine_effect": 0.1,
-    "serotonin_effect": 0.1,
-    "norepinephrine_effect": 0.1,
+    "cognitive_model_params": {
+        "integration_levels": [0.8, 1.2],
+        "attention_signals": [0.5, 1.5]
+    },
     "learning_rate": 0.01,
-    "tau_eligibility": 20.0,
     "topology_type": "small_world",
     "p_rewire": 0.1,
     "k": 4,
-    "cognitive_model_params": {
-        "integration_levels": 1.0,
-        "attention_signals": 1.0,
-        "interregional_connectivity": 1.0
-    }
+    "dopamine_effect": 0.05,
+    "serotonin_effect": 0.05,
+    "norepinephrine_effect": 0.05
 }
