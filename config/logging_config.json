@@ -1,27 +1,21 @@
 {
     "version": 1,
-    "formatters": {
-        "detailed": {
-            "format": "%(asctime)s %(name)s %(levelname)s: %(message)s"
-        }
-    },
     "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-            "formatter": "detailed"
-        },
-        "file": {
-            "class": "logging.handlers.RotatingFileHandler",
-            "formatter": "detailed",
-            "filename": "logs/simulation.log",
-            "maxBytes": 10485760,
-            "backupCount": 3
+        "fileHandler": {
+            "class": "logging.FileHandler",
+            "formatter": "myFormatter",
+            "filename": "logs/simulation.log"
         }
     },
     "loggers": {
         "": {
-            "handlers": ["console", "file"],
-            "level": "DEBUG"
+            "handlers": ["fileHandler"],
+            "level": "INFO"
+        }
+    },
+    "formatters": {
+        "myFormatter": {
+            "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
         }
     }
 }
