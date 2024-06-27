@@ -1,11 +1,6 @@
 import numpy as np
 
 class ContinuousLearning:
-    """
-    Implements continuous learning mechanisms for neural networks.
-    Reference: Izhikevich EM. Dynamical Systems in Neuroscience: The Geometry of Excitability and Bursting. MIT Press. 2007.
-    """
-    
     def __init__(self, memory_capacity=1000, learning_rate=0.01):
         self.memory_capacity = memory_capacity
         self.memory = []
@@ -27,3 +22,33 @@ class ContinuousLearning:
     def learn_from_experience(self, experience):
         weights_update = self.advanced_learning_algorithm(experience)
         return weights_update
+
+    def adaptive_learning_rate(self, performance_metric):
+        base_rate = self.learning_rate
+        adjusted_rate = base_rate * (1 + performance_metric)
+        self.learning_rate = np.clip(adjusted_rate, 0.001, 0.1)
+        return self.learning_rate
+
+    def replay_memory(self):
+        for experience in self.memory:
+            self.learn_from_experience(experience)
+
+    def meta_learning(self, experiences, meta_model):
+        meta_features = np.array([np.mean(exp) for exp in experiences])
+        learning_strategy = meta_model.predict(meta_features.reshape(1, -1))
+        self.learning_rate = learning_strategy[0]
+        return self.learning_rate
+
+# Example usage of adaptive learning rate and replay memory
+if __name__ == "__main__":
+    continuous_learning = ContinuousLearning()
+    performance_metric = 0.75
+
+    for t in range(100):
+        experience = np.random.rand(100)
+        continuous_learning.update_memory(experience)
+
+    continuous_learning.consolidate_memory()
+    new_learning_rate = continuous_learning.adaptive_learning_rate(performance_metric)
+    print(f"Adjusted Learning Rate: {new_learning_rate}")
+    continuous_learning.replay_memory()
