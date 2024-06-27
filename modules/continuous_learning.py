@@ -21,19 +21,9 @@ class ContinuousLearning:
             self.learn_from_experience(experience)
 
     def advanced_learning_algorithm(self, experience):
-        # Implement a sophisticated algorithm based on Izhikevich (2007)
         weights_update = self.learning_rate * np.outer(experience, experience)
         return weights_update
 
     def learn_from_experience(self, experience):
         weights_update = self.advanced_learning_algorithm(experience)
         return weights_update
-
-# Example usage
-continuous_learning = ContinuousLearning()
-
-for t in range(100):
-    experience = np.random.rand(100)  # Dummy experience data
-    continuous_learning.update_memory(experience)
-
-continuous_learning.consolidate_memory()
