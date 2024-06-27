@@ -1,21 +1,24 @@
 {
     "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "default": {
+            "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        }
+    },
     "handlers": {
-        "fileHandler": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "default"
+        },
+        "file": {
             "class": "logging.FileHandler",
-            "formatter": "myFormatter",
+            "formatter": "default",
             "filename": "logs/simulation.log"
         }
     },
-    "loggers": {
-        "": {
-            "handlers": ["fileHandler"],
-            "level": "INFO"
-        }
-    },
-    "formatters": {
-        "myFormatter": {
-            "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
-        }
+    "root": {
+        "level": "DEBUG",
+        "handlers": ["console", "file"]
     }
 }
