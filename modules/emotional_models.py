@@ -11,7 +11,6 @@ class EmotionalModel:
         self.history = []
 
     def update_state_dynamic(self, external_factors, internal_feedback):
-        # Implement dynamic interaction between emotional states
         self.state['happiness'] += external_factors['positive_events'] - internal_feedback['stress']
         self.state['stress'] += external_factors['negative_events'] - internal_feedback['calmness']
         self.state['motivation'] += external_factors['goals_achieved'] - internal_feedback['frustration']
