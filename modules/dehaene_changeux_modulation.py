@@ -33,10 +33,10 @@ class DehaeneChangeuxModulation:
         for _ in range(self.layer_count):
             activity = np.dot(self.cognitive_model_weights, activity)
             activity = self.normalize(activity) * self.integration_levels
-            activity = np.tanh(activity)  # Non-linear activation
+            activity = np.tanh(activity)
             activity = activity * self.attention_signals
             layer_activities.append(activity)
-        return layer_activities[-1]  # Return the last layer's activity
+        return layer_activities[-1]
     
     def empirical_feedback(self, integrated_activity, neuron_activity):
         feedback_strength_base = 0.1
@@ -59,12 +59,3 @@ class DehaeneChangeuxModulation:
         self.update_weights(integrated_activity)
         return integrated_activity
 
-# Example usage with dummy data
-neuron_count = 100
-layer_count = 3
-neuron_activity = np.random.rand(neuron_count)
-
-modulator = DehaeneChangeuxModulation(neuron_count, layer_count)
-integrated_activity = modulator.modulate_activity(neuron_activity)
-
-print(integrated_activity)
