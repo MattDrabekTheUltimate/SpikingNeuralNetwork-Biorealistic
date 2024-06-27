@@ -2,11 +2,6 @@ import numpy as np
 from modules.continuous_learning import ContinuousLearning
 
 class DehaeneChangeuxModulation:
-    """
-    Implements the Dehaene-Changeux model for cognitive modulation.
-    Reference: Rolls ET. A hierarchical neural network model of the primate visual system. Journal of Neuroscience. 2011.
-    """
-
     def __init__(self, neuron_count, layer_count, noise_level=0.05):
         self.neuron_count = neuron_count
         self.layer_count = layer_count
@@ -59,3 +54,18 @@ class DehaeneChangeuxModulation:
         self.update_weights(integrated_activity)
         return integrated_activity
 
+    def context_aware_modulation(self, neuron_activity, context):
+        context_factor = np.mean(context) * 0.1
+        adjusted_activity = self.modulate_activity(neuron_activity) * (1 + context_factor)
+        return adjusted_activity
+
+# Example usage with context-aware modulation
+if __name__ == "__main__":
+    neuron_count = 100
+    layer_count = 3
+    neuron_activity = np.random.rand(neuron_count)
+    context = np.random.rand(neuron_count)
+
+    modulator = DehaeneChangeuxModulation(neuron_count, layer_count)
+    integrated_activity = modulator.context_aware_modulation(neuron_activity, context)
+    print(integrated_activity)
