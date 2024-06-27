@@ -5,7 +5,7 @@ def create_network_topology(num_neurons, topology_type="small_world", p_rewire=0
     Creates a neural network topology.
     Reference: Sporns O, Chialvo DR, Kaiser M, Hilgetag CC. Organization, development and function of complex brain networks. Trends in Cognitive Sciences. 2004.
     """
-    if topology_type == "small_world":
+    if (topology_type == "small_world"):
         synaptic_weights = np.zeros((num_neurons, num_neurons))
         for i in range(num_neurons):
             for j in range(1, k // 2 + 1):
