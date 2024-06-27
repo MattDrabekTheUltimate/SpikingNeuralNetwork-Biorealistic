@@ -38,7 +38,6 @@ view.camera = scene.cameras.TurntableCamera(fov=45)
 pos = np.random.normal(size=(100, 3), scale=0.2)
 scatter.set_data(pos, edge_color=None, face_color=(1, 1, 1, 0.5), size=5)
 
-# Update the visualization with spikes
 def update_vispy(frame):
     spike_times = np.where(output_sink_data[:, frame])[0]
     scatter.set_data(pos[spike_times], edge_color=None, face_color=(1, 0, 0, 0.5), size=10)
@@ -46,5 +45,4 @@ def update_vispy(frame):
 timer = canvas.events.timer.connect(lambda event: update_vispy(event))
 timer.start(0.1)
 canvas.app.run()
-
 
