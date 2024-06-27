@@ -1,5 +1,4 @@
 import numpy as np
-import json
 
 def generate_neuron_sensitivity():
     neuron_sensitivity = np.random.uniform(0.8, 1.2, (100, 3))
