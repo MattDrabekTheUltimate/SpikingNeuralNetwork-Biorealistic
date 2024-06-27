@@ -30,3 +30,16 @@ def dynamic_baseline(t, mu=1.0, sigma=0.005, tau=100.0, kp=0.1, ki=0.01, kd=0.01
         logger.error(f"Value error in dynamic_baseline: {ve}")
     except Exception as e:
         logger.error(f"Unexpected error in dynamic_baseline: {e}")
+
+def adaptive_baseline_adjustment(baseline, network_state):
+    feedback_factor = np.mean(network_state) * 0.05
+    adjusted_baseline = baseline * (1 + feedback_factor)
+    return adjusted_baseline
+
+# Example usage for adaptive baseline adjustment
+if __name__ == "__main__":
+    t = np.arange(1000)
+    network_state = np.random.rand(100)
+    baseline_activity = dynamic_baseline(t, network_state=network_state)
+    adjusted_baseline = adaptive_baseline_adjustment(baseline_activity, network_state)
+    print(adjusted_baseline)
