@@ -38,17 +38,3 @@ class ContinuousLearning:
         learning_strategy = meta_model.predict(meta_features.reshape(1, -1))
         self.learning_rate = learning_strategy[0]
         return self.learning_rate
-
-# Example usage of adaptive learning rate and replay memory
-if __name__ == "__main__":
-    continuous_learning = ContinuousLearning()
-    performance_metric = 0.75
-
-    for t in range(100):
-        experience = np.random.rand(100)
-        continuous_learning.update_memory(experience)
-
-    continuous_learning.consolidate_memory()
-    new_learning_rate = continuous_learning.adaptive_learning_rate(performance_metric)
-    print(f"Adjusted Learning Rate: {new_learning_rate}")
-    continuous_learning.replay_memory()
