@@ -58,14 +58,3 @@ class DehaeneChangeuxModulation:
         context_factor = np.mean(context) * 0.1
         adjusted_activity = self.modulate_activity(neuron_activity) * (1 + context_factor)
         return adjusted_activity
-
-# Example usage with context-aware modulation
-if __name__ == "__main__":
-    neuron_count = 100
-    layer_count = 3
-    neuron_activity = np.random.rand(neuron_count)
-    context = np.random.rand(neuron_count)
-
-    modulator = DehaeneChangeuxModulation(neuron_count, layer_count)
-    integrated_activity = modulator.context_aware_modulation(neuron_activity, context)
-    print(integrated_activity)
