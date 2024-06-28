@@ -1,11 +1,6 @@
 import numpy as np
 
 class AdExNeuron:
-    """
-    Implements the Adaptive Exponential Integrate-and-Fire (AdEx) neuron model.
-    Reference: Brette R, Gerstner W. Adaptive exponential integrate-and-fire model as an effective description of neuronal activity. Journal of Neurophysiology. 2005.
-    """
-    
     def __init__(self, C, gL, EL, VT, DeltaT, a, tau_w, b, Vr, Vpeak, dt):
         self.C = C
         self.gL = gL
@@ -36,22 +31,20 @@ class AdExNeuron:
             raise ValueError("Subthreshold adaptation out of range.")
         if not (10 <= self.tau_w <= 200):
             raise ValueError("Adaptation time constant out of range.")
-        if not (0.1 <= self.b <= 50):
+        if not (0 <= self.b <= 2):
             raise ValueError("Spike-triggered adaptation out of range.")
-        if not (-70 <= self.Vr <= -40):
+        if not (-80 <= self.Vr <= -40):
             raise ValueError("Reset potential out of range.")
-        if not (10 <= self.Vpeak <= 50):
+        if not (10 <= self.Vpeak <= 100):
             raise ValueError("Peak potential out of range.")
         if not (0.01 <= self.dt <= 1):
             raise ValueError("Time step out of range.")
 
-    def step(self, I):
+    def simulate(self, I):
         self.validate_parameters()
-        dV = (self.gL * (self.EL - self.V) + self.gL * self.DeltaT * np.exp((self.V - self.VT) / self.DeltaT) - self.w + I) / self.C
-        dw = (self.a * (self.V - self.EL) - self.w) / self.tau_w
-        self.V += dV * self.dt
-        self.w += dw * self.dt
+        self.V += (self.dt / self.C) * (-self.gL * (self.V - self.EL) + self.gL * self.DeltaT * np.exp((self.V - self.VT) / self.DeltaT) - self.w + I)
+        self.w += (self.dt / self.tau_w) * (self.a * (self.V - self.EL) - self.w)
         if self.V >= self.Vpeak:
             self.V = self.Vr
             self.w += self.b
-        return self.V, self.w
+        return self.V
