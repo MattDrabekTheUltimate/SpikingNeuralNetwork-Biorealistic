@@ -1,6 +1,7 @@
 # Neuromorphic Simulation - AC
 
 Introduction
+
 The Neuromorphic Simulation Project aims to simulate neural processes with an emphasis on achieving a concept of artificial consciousness. The simulation incorporates various neural mechanisms such as plasticity, modulation, learning, and emotional states, utilizing state-of-the-art computational techniques and empirical data.
 
 
