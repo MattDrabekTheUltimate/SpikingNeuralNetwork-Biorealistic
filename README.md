@@ -83,8 +83,8 @@ This module implements continuous learning mechanisms, including memory consolid
 
 emotional_models.py
 This module simulates complex emotional states and includes empathy simulation and mood regulation.
-
-plasticity.py
+```
+plasticity.py```
 This module implements synaptic plasticity mechanisms, including STDP and Q-learning updates.
 
 topology.py
