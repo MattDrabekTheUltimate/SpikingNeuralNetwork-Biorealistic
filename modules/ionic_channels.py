@@ -1,29 +1,28 @@
 import numpy as np
 
 class IonicChannel:
-    """
-    Implements the dynamics of ionic channels in neurons.
-    Reference: Hille B. Ion Channels of Excitable Membranes. Sinauer Associates. 2001.
-    """
-    
-    def __init__(self, g_max, E_rev, dynamics_params):
+    def __init__(self, g_max, E_rev, alpha, beta):
         self.g_max = g_max
         self.E_rev = E_rev
-        self.dynamics_params = dynamics_params
-        self.state = self.initialize_state()
+        self.alpha = alpha
+        self.beta = beta
+        self.state = 0
 
-    def initialize_state(self):
-        return {param: np.random.uniform(0, 1) for param in self.dynamics_params}
+    def update_state(self, V):
+        self.state += self.alpha * (1 - self.state) - self.beta * self.state
+        return self.state
 
-    def update_state(self, voltage, dt):
-        for param, dynamics in self.dynamics_params.items():
-            alpha = dynamics['alpha'](voltage)
-            beta = dynamics['beta'](voltage)
-            self.state[param] += (alpha * (1 - self.state[param]) - beta * self.state[param]) * dt
+    def compute_current(self, V):
+        self.update_state(V)
+        I = self.g_max * self.state * (V - self.E_rev)
+        return I
 
-    def complex_dynamics(self, voltage, dt):
-        pass
-
-    def compute_current(self, voltage):
-        g = self.g_max * np.prod([self.state[param] for param in self.dynamics_params])
-        return g * (voltage - self.E_rev)
+    def validate_parameters(self):
+        if not (1 <= self.g_max <= 200):
+            raise ValueError("Maximum conductance out of range.")
+        if not (-100 <= self.E_rev <= 100):
+            raise ValueError("Reversal potential out of range.")
+        if not (0 <= self.alpha <= 1):
+            raise ValueError("Alpha parameter out of range.")
+        if not (0 <= self.beta <= 1):
+            raise ValueError("Beta parameter out of range.")
