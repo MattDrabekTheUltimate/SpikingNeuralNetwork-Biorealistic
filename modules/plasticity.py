@@ -39,16 +39,3 @@ def deep_q_learning_update(weights, rewards, eligibility_traces, learning_rate, 
 def meta_plasticity(weights, meta_factor):
     adjusted_weights = weights * (1 + meta_factor)
     return np.clip(adjusted_weights, 0, 1 - 1e-6)
-
-# Example usage of meta-plasticity
-if __name__ == "__main__":
-    weights = np.random.rand(100, 100)
-    spikes_pre = np.random.randint(2, size=100)
-    spikes_post = np.random.randint(2, size=100)
-    eligibility_traces = np.zeros(100)
-    learning_rate = 0.01
-    tau_eligibility = 20.0
-
-    weights, eligibility_traces = update_synaptic_weights(weights, spikes_pre, spikes_post, eligibility_traces, learning_rate, tau_eligibility)
-    adjusted_weights = meta_plasticity(weights, 0.05)
-    print(adjusted_weights)
