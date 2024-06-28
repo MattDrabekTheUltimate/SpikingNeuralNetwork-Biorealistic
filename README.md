@@ -120,14 +120,15 @@ logging_config.json
 Data Files
 The data directory contains the following data files needed for the simulation:
 
-neuron_sensitivity.npy: Neuron sensitivity data
-initial_conditions.npy: Initial conditions for the simulation
-cognitive_model_weights.npy: Weights for the cognitive model
-dopamine_levels.npy: Dopamine levels over time
-serotonin_levels.npy: Serotonin levels over time
-norepinephrine_levels.npy: Norepinephrine levels over time
-integration_levels.npy: Integration levels for the modulation model
-attention_signals.npy: Attention signals for the modulation model
+- neuron_sensitivity.npy: Neuron sensitivity data
+- initial_conditions.npy: Initial conditions for the simulation
+- cognitive_model_weights.npy: Weights for the cognitive model
+- dopamine_levels.npy: Dopamine levels over time
+- serotonin_levels.npy: Serotonin levels over time
+- norepinephrine_levels.npy: Norepinephrine levels over time
+- integration_levels.npy: Integration levels for the modulation model
+- attention_signals.npy: Attention signals for the modulation model
+
 Scripts
 generate_data.py
 This script generates the necessary data files for the simulation based on empirical distributions.
