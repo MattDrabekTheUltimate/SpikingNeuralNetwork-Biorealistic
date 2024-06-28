@@ -71,46 +71,51 @@ To visualize the results of the simulation, use the visualization.py script:
 ```
 python scripts/visualization.py
 ```
+
+
 Modules Description
+
 baseline.py
-This module implements dynamic baseline adjustments for neurons based on empirical data.
+- This module implements dynamic baseline adjustments for neurons based on empirical data.
 
 dehaene_changeux_modulation.py
-This module implements the Dehaene-Changeux model for cognitive modulation, including multi-layer integration and hierarchical feedback.
+- This module implements the Dehaene-Changeux model for cognitive modulation, including multi-layer integration and hierarchical feedback.
 
 continuous_learning.py
-This module implements continuous learning mechanisms, including memory consolidation and adaptive learning rates.
+- This module implements continuous learning mechanisms, including memory consolidation and adaptive learning rates.
 
 emotional_models.py
-This module simulates complex emotional states and includes empathy simulation and mood regulation.
-```
-plasticity.py```
-This module implements synaptic plasticity mechanisms, including STDP and Q-learning updates.
+- This module simulates complex emotional states and includes empathy simulation and mood regulation.
+
+plasticity.py
+- This module implements synaptic plasticity mechanisms, including STDP and Q-learning updates.
 
 topology.py
-This module creates and dynamically adjusts the network topology, including small-world network generation and hierarchical reconfiguration.
+- This module creates and dynamically adjusts the network topology, including small-world network generation and hierarchical reconfiguration.
 
 behavior_monitoring.py
-This module monitors emergent behaviors, detects anomalies, and categorizes and predicts future behaviors using machine learning techniques.
+- This module monitors emergent behaviors, detects anomalies, and categorizes and predicts future behaviors using machine learning techniques.
 
 self_model.py
-This module simulates self-awareness and decision-making processes, including goal setting and adaptive feedback mechanisms.
+- This module simulates self-awareness and decision-making processes, including goal setting and adaptive feedback mechanisms.
 
 sensory_motor.py
-This module integrates sensory and motor signals, including adaptive control and dynamic feedback processing.
+- This module integrates sensory and motor signals, including adaptive control and dynamic feedback processing.
 
 adex_neuron.py
-This module implements the Adaptive Exponential Integrate-and-Fire (AdEx) neuron model.
+- This module implements the Adaptive Exponential Integrate-and-Fire (AdEx) neuron model.
 
 ionic_channels.py
-This module simulates ionic channels in neurons, including state updates and current computation.
+- This module simulates ionic channels in neurons, including state updates and current computation.
+
 
 Configuration Files
+
 simulation_config.json
-This file contains configuration parameters for the simulation, including the number of neurons, time steps, learning rates, and topology settings.
+- This file contains configuration parameters for the simulation, including the number of neurons, time steps, learning rates, and topology settings.
 
 logging_config.json
-This file contains the logging configuration for the simulation, defining log levels and handlers.
+- This file contains the logging configuration for the simulation, defining log levels and handlers.
 
 Data Files
 The data directory contains the following data files needed for the simulation:
