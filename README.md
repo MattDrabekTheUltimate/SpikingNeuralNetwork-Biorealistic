@@ -216,7 +216,11 @@ This project is licensed under the GNU 3.0 License - see the LICENSE file for de
 
 34. **Wolpert, D. M., Ghahramani, Z., & Flanagan, J. R. (2001).** Perspectives and problems in motor learning. Trends in Cognitive Sciences, 5(11), 487-494. [Link](https://www.sciencedirect.com/science/article/abs/pii/S1364661300017043)
 
+^^Some link may not work, but if you dig deeper you will find them ...
+
 These references provide a robust foundation for the theoretical and empirical underpinnings of the Neuromorphic Simulation Project, contributing to the development of sophisticated neural simulations and the exploration of this artificial consciousness project coded by Matthew Drabek.
+
+
 
 *Special thanks to medical student A. Fogl
 
