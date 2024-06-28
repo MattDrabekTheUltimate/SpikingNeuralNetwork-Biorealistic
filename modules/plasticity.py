@@ -4,10 +4,6 @@ import numpy as np
 logger = logging.getLogger(__name__)
 
 def update_synaptic_weights(weights, spikes_pre, spikes_post, eligibility_traces, learning_rate, tau_eligibility):
-    """
-    Implements synaptic weight updates using STDP.
-    Reference: Martin SJ, Grimwood PD, Morris RG. Synaptic plasticity and memory: an evaluation of the hypothesis. Annual Review of Neuroscience. 2000.
-    """
     A_plus = 0.005
     A_minus = 0.005
     tau_plus = 20.0
@@ -29,10 +25,6 @@ def update_synaptic_weights(weights, spikes_pre, spikes_post, eligibility_traces
     return weights, eligibility_traces
 
 def deep_q_learning_update(weights, rewards, eligibility_traces, learning_rate, discount_factor, state, action):
-    """
-    Implements synaptic weight updates using Deep Q-Learning.
-    Reference: Mnih V, Kavukcuoglu K, Silver D, et al. Human-level control through deep reinforcement learning. Nature. 2015.
-    """
     q_values = np.zeros_like(weights)
     for t in range(rewards.shape[0] - 1):
         td_error = rewards[t] + discount_factor * np.max(q_values[t + 1]) - q_values[t]
@@ -43,3 +35,20 @@ def deep_q_learning_update(weights, rewards, eligibility_traces, learning_rate, 
     
     logger.debug(f"Deep Q-learning updated weights: {weights}")
     return weights
+
+def meta_plasticity(weights, meta_factor):
+    adjusted_weights = weights * (1 + meta_factor)
+    return np.clip(adjusted_weights, 0, 1 - 1e-6)
+
+# Example usage of meta-plasticity
+if __name__ == "__main__":
+    weights = np.random.rand(100, 100)
+    spikes_pre = np.random.randint(2, size=100)
+    spikes_post = np.random.randint(2, size=100)
+    eligibility_traces = np.zeros(100)
+    learning_rate = 0.01
+    tau_eligibility = 20.0
+
+    weights, eligibility_traces = update_synaptic_weights(weights, spikes_pre, spikes_post, eligibility_traces, learning_rate, tau_eligibility)
+    adjusted_weights = meta_plasticity(weights, 0.05)
+    print(adjusted_weights)
