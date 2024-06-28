@@ -35,11 +35,3 @@ def adaptive_baseline_adjustment(baseline, network_state):
     feedback_factor = np.mean(network_state) * 0.05
     adjusted_baseline = baseline * (1 + feedback_factor)
     return adjusted_baseline
-
-# Example usage for adaptive baseline adjustment
-if __name__ == "__main__":
-    t = np.arange(1000)
-    network_state = np.random.rand(100)
-    baseline_activity = dynamic_baseline(t, network_state=network_state)
-    adjusted_baseline = adaptive_baseline_adjustment(baseline_activity, network_state)
-    print(adjusted_baseline)
